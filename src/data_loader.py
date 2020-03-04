@@ -43,7 +43,7 @@ class batch_iterator():
         dataset = tf.data.Dataset.from_tensor_slices((self.x_test, self.y_test))
         dataset = dataset.shuffle(len(self.x_test))
         dataset = dataset.map(self.pre_process, num_parallel_calls=4)
-        dataset = dataset.batch(128)
+        dataset = dataset.batch(1000)
         iterator = tf.data.Iterator.from_structure(dataset.output_types, dataset.output_shapes)
         iterator_initialize = iterator.make_initializer(dataset)
         return iterator, iterator_initialize
